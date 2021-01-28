@@ -29,11 +29,25 @@ Add an element to the `index-fields\index-subtemplate.xsl` for your metadata pro
 	    <xsl:call-template name="subtemplate-common-fields"/>
 	</xsl:template>
 
+
 Where:
 
-* The element being matched is the root element of your snippet
+* The element being matched is the root element of your snippet (in this case `gmd:DQ_CompletenessCommission`)
 * The date element (if required) is the xpath to the sub-element representing the (eg) Citation Date for the specification
 * The title element (shown in the Geonetwork sub-directory and element picker while editing) is the xpath to the sub-element you wish to use as the title of the snippet
+
+Then add an element to 
+Add an element to the `index-fields\index-subtemplate.xsl` for the core ISO19139 metadata profile, containing the following, making the same substitutions as above:
+
+	<xsl:template mode="index" match="gmd:DQ_CompletenessCommission[count(ancestor::node()) =  1]">
+            <Field name="_title"
+                   string="{if ($title != '') then $title
+                            else gmd:result/*/gmd:specification/*/gmd:title/*/text()}"
+                   store="true" index="true"/>
+
+            <xsl:call-template name="subtemplate-common-fields"/>
+        </xsl:template>
+
 
 ### Add a translation
 
@@ -59,7 +73,7 @@ See https://github.com/AstunTechnology/iso19139.gemini23/tree/3.10.x/src/main/pl
 
 * As an admin, naviagate to contribute -> manage directory and choose "create a template"
 * Paste your xml into the box labelled "XML snippet"
-* Choose a group if required, otherwise leave this blank
+* Choose a group to assign it to (this is now mandatory)
 * Click the "Import directory entry" button
 
 
