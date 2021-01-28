@@ -37,7 +37,7 @@ Where:
 
 ### Add a translation
 
-Add an entry in `geonetwork\catalog/locales/en-custom.json` as follows:
+Add an entry in `geonetwork/catalog/locales/en-custom.json` as follows:
 
 	"root element": "human-readable name"
 
