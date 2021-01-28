@@ -37,7 +37,7 @@ Where:
 
 ### Add a translation
 
-Add an entry in `catalog/locales/en-custom.json` as follows:
+Add an entry in `geonetwork\catalog/locales/en-custom.json` as follows:
 
 	"root element": "human-readable name"
 
@@ -49,11 +49,9 @@ You will probably need to restart GeoNetwork and re-index your records for these
 
 ### Potential changes to editor layout
 
-If you have a boolean element (eg for `gmd:pass`) and you wish to allow it to display as "not evaluated" as well as "true" or "false" then ensure that the field definition for `gco:boolean` in your `layout/config-editor.xml' contains a generic enough xpath to encompass your element.
-
-Edit the `gmd:report` directive in the same file to include your root element in the `data-filter` declaration.
-
-To prevent validation errors you might want to update `update-fixed-info.xsl` to force any empty numeric elements to have a `nilReason` attribute.
+* If you have a boolean element (eg for `gmd:pass`) and you wish to allow it to display as "not evaluated" as well as "true" or "false" then ensure that the field definition for `gco:boolean` in your profile's `layout/config-editor.xml` contains a generic enough xpath to encompass your element.
+* Edit the `gmd:report` directive in the same file to include your root element in the `data-filter` declaration.
+* To prevent validation errors you might want to update `update-fixed-info.xsl` to force any empty numeric elements to have a `nilReason` attribute.
 
 See https://github.com/AstunTechnology/iso19139.gemini23/tree/3.10.x/src/main/plugin/iso19139.gemini23 for examples of this being applied.
 
