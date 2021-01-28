@@ -1,10 +1,10 @@
-# Generic Data Quality Snippets for GeoNetwork
+# Generic Snippets for GeoNetwork
 
-WIP repository of generic data quality snippets for GeoNetwork. It is expected that this will be expanded to include different completeness reports over time.
+WIP repository of generic snippets for GeoNetwork. It is expected that this will be expanded to include different types of snippet over time.
 
-The following process is an outline for how to define a new data quality snippet, add it to the GeoNetwork index, and allow it to show in the report picker in the editor layout for your schema. 
+The following process is an outline for how to define a new snippet, add it to the GeoNetwork index, and allow it to show in the report picker in the editor layout for your schema. 
 
-The process of defining the correct xml for your snippet is left to you but see the example given in this repository as a starting point.
+The process of defining the correct xml for your snippet is left to you but see the examples given in this repository as a starting point.
 
 Note that you will need access to the files for both your schema and the core GeoNetwork code to create and apply a new snippet, as well as an administator account in the web interface. You may need to restart GeoNetwork for changes to be applied, but should not need to rebuild the source code.
 
