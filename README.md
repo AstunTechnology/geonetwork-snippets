@@ -8,14 +8,14 @@ The following process is an outline for how to define a new snippet, add it to t
 
 The process of defining the correct xml for your snippet is left to you but see the examples given in this repository as a starting point.
 
-Note that you will need access to the files for both your schema and the core GeoNetwork code to create and apply a new snippet, as well as an administator account in the web interface. You may need to restart GeoNetwork for changes to be applied, but should not need to rebuild the source code.
+Note that you will need access to the files for both your schema and the core GeoNetwork code to create and apply a new snippet, as well as an administrator account in the web interface. You may need to restart GeoNetwork for changes to be applied, but should not need to rebuild the source code.
 
 ## Process
 
 ### Define snippet
 
 * Must be contained within a single root element (see examples in this repository)
-* Must have all the namespaces used within the snippet defined in the root element
+* Must have all the xml namespaces used within the snippet defined in the root element
 
 ### Add to index
 
@@ -73,8 +73,8 @@ Where:
 
 * **data-template-add-action** indicates whether the entry should also contain a standard button for adding a new element
 * **data-search-action** indicates whether the search box is present
-* **data-popup-action** indicates whether the add button is small and unlabelled or large with a label
-* **data-filter='{"\_root": "gmd:DQ_*"}'** indicates the xpath of the child element, eg the one you want to add the snippet for. In this example a wildcard character has been used to allow any `gmd:DQ_` element to use the selector
+* **data-popup-action** indicates whether the add button is small and unlabeled or large with a label
+* **data-filter='{"\_root": "gmd:DQ_*"}'** indicates the xpath of the child element, eg the one you want to add the snippet for. In this example a wild-card character has been used to allow any `gmd:DQ_` element to use the selector
 * **data-insert-modes** indicates whether there should be an option to insert as "text", "x-link" or "" (both text and x-link)
 * **data-template-type** indicates the type of template being searched for
 
@@ -96,8 +96,8 @@ See https://github.com/AstunTechnology/iso19139.gemini23/tree/3.10.x/src/main/pl
 
 ### Add snippet to directory
 
-* As an admin, naviagate to contribute -> manage directory and choose "create a template"
-* Paste your xml into the box labelled "XML snippet"
+* As an admin, navigate to contribute -> manage directory and choose "create a template"
+* Paste your xml into the box labeled "XML snippet"
 * Choose a group to assign it to (this is mandatory)
 * Click the "Import directory entry" button
 
