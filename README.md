@@ -36,7 +36,7 @@ Where:
 * `[count(ancestor::node()) =  1]` is mandatory
 * The string element is an xpath statement to create an entry that will represent the title of the snippet in the index and the display label in the directory
 
-Then add the same entry above into `index-fields\index-subtemplate.xsl` for the core ISO19139 metadata profile, containing the following, making the same substitutions as above. This ensures that the entry is present and displays correctly in both your metadata profile editor interface and the main directory management page.
+Then add the same entry above into `index-fields/index-subtemplate.xsl` for the core ISO19139 metadata profile, making the same substitutions as above. This ensures that the entry is present and displays correctly in both your metadata profile editor interface and the main directory management page.
 
 
 ### Add a translation
@@ -87,12 +87,10 @@ If only the parent element is defined as a section and your element is **not** e
 	<section xpath="/gmd:MD_Metadata/gmd:dataQualityInfo" or="dataQualityInfo"
 	       in="/gmd:MD_Metadata"/>
 
-If your element **is** explicitly defined then you need to change the definition of it to include the angular directive. eg:
+If your element **is** explicitly defined then you need to change the definition of it to include the angular directive, eg:
 
 	<action type="add" btnLabel="addAccessConstraints" name="addAccessConstraints" or="resourceConstraints"
                   in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification" addDirective="data-gn-directory-entry-selector">
-
-See https://github.com/AstunTechnology/iso19139.gemini23/tree/3.10.x/src/main/plugin/iso19139.gemini23/layout/config-editor.xml for examples of this being applied.
 
 ### Add snippet to directory
 
@@ -102,7 +100,7 @@ See https://github.com/AstunTechnology/iso19139.gemini23/tree/3.10.x/src/main/pl
 * Click the "Import directory entry" button
 
 
-## Known errors
+## Common problems
 
-* Not having a single root element
-* Not getting the correct xpath
+* Not having a single root element in your snippet will cause an error when you try to save it in the directory manager
+* Not defining the correct xpath for the `_title` element will mean that the title is blank when the snippet is indexed
