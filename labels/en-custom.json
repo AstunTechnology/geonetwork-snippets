@@ -1,0 +1,12 @@
+{
+	"gmd:DQ_CompletenessCommission": "Data Quality Reports (Completeness)",
+	"gmd:DQ_CompletenessOmission": "Data Quality Reports (Omission)",
+	"gmd:DQ_ThematicAccuracy": "Data Quality Reports (Thematic Accuracy)",
+	"gmd:DQ_TemporalAccuracy": "Data Quality Reports (Temporal Accuracy)",
+	"gmd:DQ_PositionalAccuracy": "Data Quality Reports (Positional Accuracy)",
+	"gmd:DQ_TopologicalConsistency": "Data Quality Reports (Topological Consistency)",
+	"gmd:DQ_LogicalConsistency": "Data Quality Reports (Logical Consistency)",
+	"gmd:DQ_FormatConsistency": "Data Quality Reports (Format Consistency)",
+	"gmd:DQ_ConceptualConsistency": "Data Quality Reports (Conceptual Consistency)",
+	"gmd:DQ_DomainConsistency": "Data Quality Reports (Domain Consistency)"
+}
