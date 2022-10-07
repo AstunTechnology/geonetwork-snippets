@@ -94,7 +94,7 @@ If your element **is** explicitly defined then you need to change the definition
 
 ### Add snippet to directory
 
-* As an admin, navigate to contribute -> manage directory and choose "create a template"
+* As an admin, navigate to Contribute -> Manage directory and choose "Add New Entry" -> Create an entry from scratch
 * Paste your xml into the box labeled "XML snippet"
 * Choose a group to assign it to (this is mandatory)
 * Click the "Import directory entry" button
