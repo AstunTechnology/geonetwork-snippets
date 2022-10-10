@@ -25,7 +25,7 @@
             </gmd:CI_Citation>
          </gmd:specification>
          <gmd:explanation>
-            <gco:CharacterString>Degree to which data is storied in accordance with the physical structure of the dataset, indicated by a number that represents a percentage</gco:CharacterString>
+            <gco:CharacterString>Degree to which data is stored in accordance with the physical structure of the dataset, indicated by a number that represents a percentage</gco:CharacterString>
          </gmd:explanation>
          <gmd:pass>
             <gco:Boolean>true</gco:Boolean>
