@@ -238,7 +238,7 @@
         <xsl:call-template name="subtemplate-common-fields"/>
     </xsl:template>
 
-    <xsl:template mode="index" match="gmd:DQ_TopologicalfConsistency[count(ancestor::node()) =  1]">
+    <xsl:template mode="index" match="gmd:DQ_TopologicalConsistency[count(ancestor::node()) =  1]">
     <xsl:variable name="date"
                   select="*/gmd:specification/*/gmd:date/*/gmd:date/gco:Date"/>
     <Field name="_title"
