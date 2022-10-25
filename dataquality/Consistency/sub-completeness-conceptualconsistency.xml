@@ -1,4 +1,4 @@
-<gmd:DQ_TemporalAccuracy xmlns:gml="http://www.opengis.net/gml/3.2"
+<gmd:DQ_ConceptualConsistency xmlns:gml="http://www.opengis.net/gml/3.2"
                                xmlns:gts="http://www.isotc211.org/2005/gts"
                                xmlns:gmd="http://www.isotc211.org/2005/gmd"
                                xmlns:gmx="http://www.isotc211.org/2005/gmx"
@@ -25,19 +25,22 @@
             </gmd:CI_Citation>
          </gmd:specification>
          <gmd:explanation>
-            <gco:CharacterString>Accuracy of the temporal attributes of the features in the dataset, indicated by a number that represents a percentage</gco:CharacterString>
+            <gco:CharacterString>Adherence to rules of the conceptual schema</gco:CharacterString>
          </gmd:explanation>
          <gmd:pass>
             <gco:Boolean>true</gco:Boolean>
          </gmd:pass>
       </gmd:DQ_ConformanceResult>
    </gmd:result>
-   <gmd:result>
-      <gmd:DQ_QuantitativeResult>
-         <gmd:valueUnit xlink:href="urn:ogc:def:uom:OGC:1.0:percent" gco:nilReason="missing"/>
-         <gmd:value>
-            <gco:Record>100</gco:Record>
-         </gmd:value>
-      </gmd:DQ_QuantitativeResult>
-   </gmd:result>
-</gmd:DQ_TemporalAccuracy>
+  <gmd:result>
+    <gmd:DQ_QuantitativeResult>
+      <gmd:valueType>
+        <gco:RecordType>Percentage</gco:RecordType>
+      </gmd:valueType>
+      <gmd:valueUnit xlink:href="urn:ogc:def:uom:OGC:1.0:percent" gco:nilReason="missing"/>
+      <gmd:value>
+        <gco:Record>100</gco:Record>
+      </gmd:value>
+    </gmd:DQ_QuantitativeResult>
+  </gmd:result>
+</gmd:DQ_ConceptualConsistency>
