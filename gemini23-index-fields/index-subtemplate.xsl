@@ -27,58 +27,47 @@
                 xmlns:gmx="http://www.isotc211.org/2005/gmx"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:util="java:org.fao.geonet.util.XslUtil"
-                version="2.0"
->
+                version="2.0">
 
    <xsl:import href="../../iso19139/index-fields/index-subtemplate.xsl"/>
 
    <!-- consistency directory entries -->
 
-    <xsl:template mode="index" match="gmd:DQ_DomainConsistency[count(ancestor::node()) =  1]">
-    <xsl:variable name="date"
-                  select="*/gmd:specification/*/gmd:date/*/gmd:date/gco:Date"/>
-    <Field name="_title"
-           string="{gmd:result/*/gmd:explanation/gco:CharacterString}{if ($date != '') then concat(' (', $date, ')') else ''}"
-           store="true" index="true"/>
+   <!-- consistency directory entries -->
 
+    <xsl:template mode="index" match="gmd:DQ_DomainConsistency[count(ancestor::node()) =  1]">
+    <Field name="_title"
+               string="{if ($title != '') then $title else gmd:result/*/gmd:explanation/gco:CharacterString}"
+               store="true" index="true"/>
+            <xsl:call-template name="subtemplate-common-fields"/>
         <xsl:call-template name="subtemplate-common-fields"/>
     </xsl:template>
 
     <xsl:template mode="index" match="gmd:DQ_ConceptualConsistency[count(ancestor::node()) =  1]">
-    <xsl:variable name="date"
-                  select="*/gmd:specification/*/gmd:date/*/gmd:date/gco:Date"/>
     <Field name="_title"
-           string="{gmd:result/*/gmd:explanation/gco:CharacterString}{if ($date != '') then concat(' (', $date, ')') else ''}"
+           string="{if ($title != '') then $title else gmd:result/*/gmd:explanation/gco:CharacterString}"
            store="true" index="true"/>
-
         <xsl:call-template name="subtemplate-common-fields"/>
     </xsl:template>
 
     <xsl:template mode="index" match="gmd:DQ_FormatConsistency[count(ancestor::node()) =  1]">
-    <xsl:variable name="date"
-                  select="*/gmd:specification/*/gmd:date/*/gmd:date/gco:Date"/>
     <Field name="_title"
-           string="{gmd:result/*/gmd:explanation/gco:CharacterString}{if ($date != '') then concat(' (', $date, ')') else ''}"
+           string="{if ($title != '') then $title else gmd:result/*/gmd:explanation/gco:CharacterString}"
            store="true" index="true"/>
 
         <xsl:call-template name="subtemplate-common-fields"/>
     </xsl:template>
 
     <xsl:template mode="index" match="gmd:DQ_LogicalConsistency[count(ancestor::node()) =  1]">
-    <xsl:variable name="date"
-                  select="*/gmd:specification/*/gmd:date/*/gmd:date/gco:Date"/>
     <Field name="_title"
-           string="{gmd:result/*/gmd:explanation/gco:CharacterString}{if ($date != '') then concat(' (', $date, ')') else ''}"
+           string="{if ($title != '') then $title else gmd:result/*/gmd:explanation/gco:CharacterString}"
            store="true" index="true"/>
-
         <xsl:call-template name="subtemplate-common-fields"/>
     </xsl:template>
 
     <xsl:template mode="index" match="gmd:DQ_TopologicalConsistency[count(ancestor::node()) =  1]">
-    <xsl:variable name="date"
-                  select="*/gmd:specification/*/gmd:date/*/gmd:date/gco:Date"/>
     <Field name="_title"
-           string="{gmd:result/*/gmd:explanation/gco:CharacterString}{if ($date != '') then concat(' (', $date, ')') else ''}"
+           string="{if ($title != '') then $title else gmd:result/*/gmd:explanation/gco:CharacterString}"
            store="true" index="true"/>
 
         <xsl:call-template name="subtemplate-common-fields"/>
@@ -87,30 +76,24 @@
     <!-- accuracy directory entries -->
 
     <xsl:template mode="index" match="gmd:DQ_PositionalAccuracy[count(ancestor::node()) =  1]">
-    <xsl:variable name="date"
-                  select="*/gmd:specification/*/gmd:date/*/gmd:date/gco:Date"/>
     <Field name="_title"
-           string="{gmd:result/*/gmd:explanation/gco:CharacterString}{if ($date != '') then concat(' (', $date, ')') else ''}"
+           string="{if ($title != '') then $title else gmd:result/*/gmd:explanation/gco:CharacterString}"
            store="true" index="true"/>
 
         <xsl:call-template name="subtemplate-common-fields"/>
     </xsl:template>
 
     <xsl:template mode="index" match="gmd:DQ_TemporalAccuracy[count(ancestor::node()) =  1]">
-    <xsl:variable name="date"
-                  select="*/gmd:specification/*/gmd:date/*/gmd:date/gco:Date"/>
-    <Field name="_title"
-           string="{gmd:result/*/gmd:explanation/gco:CharacterString}{if ($date != '') then concat(' (', $date, ')') else ''}"
+   <Field name="_title"
+           string="{if ($title != '') then $title else gmd:result/*/gmd:explanation/gco:CharacterString}"
            store="true" index="true"/>
 
         <xsl:call-template name="subtemplate-common-fields"/>
     </xsl:template>
 
     <xsl:template mode="index" match="gmd:DQ_ThematicAccuracy[count(ancestor::node()) =  1]">
-    <xsl:variable name="date"
-                  select="*/gmd:specification/*/gmd:date/*/gmd:date/gco:Date"/>
     <Field name="_title"
-           string="{gmd:result/*/gmd:explanation/gco:CharacterString}{if ($date != '') then concat(' (', $date, ')') else ''}"
+           string="{if ($title != '') then $title else gmd:result/*/gmd:explanation/gco:CharacterString}"
            store="true" index="true"/>
 
         <xsl:call-template name="subtemplate-common-fields"/>
@@ -120,49 +103,58 @@
     <!-- completeness directory entries -->
 
     <xsl:template mode="index" match="gmd:DQ_CompletenessCommission[count(ancestor::node()) =  1]">
-    <xsl:variable name="date"
-                  select="*/gmd:specification/*/gmd:date/*/gmd:date/gco:Date"/>
     <Field name="_title"
-           string="{gmd:result/*/gmd:explanation/gco:CharacterString/text()}{if ($date != '') then concat(' (', $date, ')') else ''}"
+           string="{if ($title != '') then $title else gmd:result/*/gmd:explanation/gco:CharacterString}"
            store="true" index="true"/>
 
         <xsl:call-template name="subtemplate-common-fields"/>
     </xsl:template>
 
     <xsl:template mode="index" match="gmd:DQ_CompletenessOmission[count(ancestor::node()) =  1]">
-    <xsl:variable name="date"
-                  select="*/gmd:specification/*/gmd:date/*/gmd:date/gco:Date"/>
     <Field name="_title"
-           string="{gmd:result/*/gmd:explanation/gco:CharacterString/text()}{if ($date != '') then concat(' (', $date, ')') else ''}"
-           store="true" index="true"/>
-
-        <xsl:call-template name="subtemplate-common-fields"/>
-    </xsl:template>
-
-    <!-- use constraints directory entries -->
-
-    <xsl:template mode="index" match="gmd:resourceConstraints[*/gmd:useConstraints]">
-    <!-- <xsl:variable name="date"
-                  select="*/gmd:specification/*/gmd:date/*/gmd:date/gco:Date"/> -->
-    <Field name="_title"
-           string="{gmd:MD_LegalConstraints/gmd:otherConstraints/gmx:Anchor/text()}"
+           string="{if ($title != '') then $title else gmd:result/*/gmd:explanation/gco:CharacterString}"
            store="true" index="true"/>
 
         <xsl:call-template name="subtemplate-common-fields"/>
     </xsl:template>
 
 
-    <!-- access constraints directory entries -->
 
-     <xsl:template mode="index" match="gmd:resourceConstraints[*/gmd:accessConstraints]">
-    <!-- <xsl:variable name="date"
-                  select="*/gmd:specification/*/gmd:date/*/gmd:date/gco:Date"/> -->
+    <xsl:template mode="index" match="gmd:MD_Format[count(ancestor::node()) =  1]">
+        <Field name="_title"
+               string="{if ($title != '') then $title else gmd:name/*/text()}"
+               store="true" index="true"/>
+
+        <xsl:call-template name="subtemplate-common-fields"/>
+    </xsl:template>
+
+    <xsl:template mode="index" match="gmd:resourceConstraints[count(ancestor::node()) =  1]">
+        <Field name="_title"
+            string="{if ($title != '') then $title
+                     else concat(  
+                        string-join(gmd:MD_LegalConstraints/*/gmd:MD_RestrictionCode/@codeListValue[@codeListValue!='otherConstraints'], ', '), 
+                        ' ', string-join(gmd:MD_LegalConstraints/gmd:otherConstraints/*/text(), ', '))}"
+            store="true" index="true"/>
+
+        <xsl:call-template name="subtemplate-common-fields"/>
+    </xsl:template>
+
+    <xsl:template mode="index" match="gmd:MD_LegalConstraints[count(ancestor::node()) =  1][gmd:useConstraints]">
     <Field name="_title"
-           string="{gmd:MD_LegalConstraints/gmd:otherConstraints/gmx:Anchor/text()}"
+           string="{if ($title !='') then $title else concat('Use Constraint: ',//gmd:otherConstraints/gmx:Anchor)}"
            store="true" index="true"/>
 
         <xsl:call-template name="subtemplate-common-fields"/>
     </xsl:template>
+
+    <xsl:template mode="index" match="gmd:MD_LegalConstraints[count(ancestor::node()) =  1][gmd:accessConstraints]">
+    <Field name="_title"
+           string="{if ($title !='') then $title else concat('Access Limitation: ',//gmd:otherConstraints/gmx:Anchor)}"
+           store="true" index="true"/>
+
+        <xsl:call-template name="subtemplate-common-fields"/>
+    </xsl:template>
+
 
 
     <xsl:template name="subtemplate-common-fields">
