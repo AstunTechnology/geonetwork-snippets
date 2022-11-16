@@ -39,7 +39,7 @@
     <Field name="_title"
                string="{if ($title != '') then $title else gmd:result/*/gmd:explanation/gco:CharacterString}"
                store="true" index="true"/>
-            <xsl:call-template name="subtemplate-common-fields"/>
+            
         <xsl:call-template name="subtemplate-common-fields"/>
     </xsl:template>
 
@@ -47,6 +47,7 @@
     <Field name="_title"
            string="{if ($title != '') then $title else gmd:result/*/gmd:explanation/gco:CharacterString}"
            store="true" index="true"/>
+
         <xsl:call-template name="subtemplate-common-fields"/>
     </xsl:template>
 
@@ -62,6 +63,7 @@
     <Field name="_title"
            string="{if ($title != '') then $title else gmd:result/*/gmd:explanation/gco:CharacterString}"
            store="true" index="true"/>
+           
         <xsl:call-template name="subtemplate-common-fields"/>
     </xsl:template>
 
