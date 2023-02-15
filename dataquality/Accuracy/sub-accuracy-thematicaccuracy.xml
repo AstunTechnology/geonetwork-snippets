@@ -22,6 +22,9 @@
                      </gmd:dateType>
                   </gmd:CI_Date>
                </gmd:date>
+               <gmd:otherCitationDetails>
+                  <gco:CharacterString>Thematic Accuracy</gco:CharacterString>
+               </gmd:otherCitationDetails>
             </gmd:CI_Citation>
          </gmd:specification>
          <gmd:explanation>
