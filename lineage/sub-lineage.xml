@@ -5,7 +5,7 @@
                 xmlns:gco="http://www.isotc211.org/2005/gco"
                 xmlns:xlink="http://www.w3.org/1999/xlink">
     <gmd:statement>
-        <gco:CharacterString>This is the standard Gemini lineage. It relates to the whole dataset that this metadata record refers to, as in statement 83 in the ISO19139 standard, section B2.4.2.1</gco:CharacterString>
+        <gco:CharacterString>Lineage with processing step</gco:CharacterString>
     </gmd:statement>
     <gmd:processStep>
         <gmd:LI_ProcessStep>
