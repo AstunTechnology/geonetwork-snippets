@@ -9,5 +9,6 @@
 	"gmd:DQ_FormatConsistency": "Data Quality Reports (Format Consistency)",
 	"gmd:DQ_ConceptualConsistency": "Data Quality Reports (Conceptual Consistency)",
 	"gmd:DQ_DomainConsistency": "Data Quality Reports (Domain Consistency and INSPIRE)",
-	"gmd:LI_Lineage": "Data Quality Reports (Lineage)"
+	"gmd:LI_Lineage": "Data Quality Reports (Lineage)",
+	"searchAlineage": "Search for a lineage report ..."
 }
