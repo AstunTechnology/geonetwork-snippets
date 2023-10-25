@@ -1,4 +1,4 @@
-# Generic Snippets for GeoNetwork
+# Generic Snippets for GeoNetwork 4.2.x branch
 
 WIP repository of generic snippets for GeoNetwork. It is expected that this will be expanded to include different types of snippet over time.
 
@@ -20,16 +20,15 @@ Note that you will need access to the files for both your schema and the core Ge
 
 ### Add to index
 
-Add an element to the `index-fields\index-subtemplate.xsl` for your metadata profile, containing something like the following:
+Add an element to the `index-fields\index-subtemplate.xsl` for the core ISO19139 profile, containing something like the following:
 
 	<xsl:template mode="index" match="gmd:DQ_ConceptualConsistency/comment()">
         <xsl:variable name="title"
                   select="."/>
-    <resourceTitleObject type="object">{
-      "default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"
-      }</resourceTitleObject>
-           
-        <xsl:call-template name="subtemplate-common-fields"/>
+    		<resourceTitleObject type="object">
+    			{"default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"}
+    		</resourceTitleObject>
+    		<xsl:call-template name="subtemplate-common-fields"/>
     </xsl:template>
 
 
@@ -38,7 +37,9 @@ Where:
 * The element being matched is the root element of your snippet (in this case `DQ_ConceptualConsistency`)
 * `comment()` is mandatory and should point at the xpath location of your title comment
 
-Then add the same entry above into `index-fields/index-subtemplate.xsl` for the core ISO19139 metadata profile, making the same substitutions as above. This ensures that the entry is present and displays correctly in both your metadata profile editor interface and the main directory management page.
+Then ensure that the Gemini 2.3 `index-fields\index-subtemplate.xsl` contains a reference back to ISO19139 (it probably does already):
+
+	<xsl:import href="../../iso19139/index-fields/index-subtemplate.xsl"/>
 
 
 ### Add a translation
@@ -66,7 +67,7 @@ In the `<fields>` section, define a new entry for the parent element of the one 
 	        data-template-add-action="true"
 	        data-search-action="true"
 	        data-popup-action="true"
-	        data-filter='{"_root": "gmd:DQ_*"}'
+	        data-filter='{"root": "gmd:DQ_*"}'
 	        data-insert-modes="text"
 	        data-template-type="report"/>
 	</for>
