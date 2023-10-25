@@ -279,4 +279,16 @@
 
     <xsl:template name="subtemplate-common-fields"/>
 
+    <!-- lineage directory entries -->
+
+  <xsl:template mode="index" match="gmd:LI_Lineage[count(ancestor::node()) =  1]">
+    <xsl:variable name="title"
+                  select="gmd:statement/(gco:CharacterString|gmx:Anchor)"/>
+    <resourceTitleObject type="object">{
+    "default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"
+    }</resourceTitleObject>
+
+    <xsl:call-template name="subtemplate-common-fields"/>
+  </xsl:template>
+
 </xsl:stylesheet>
