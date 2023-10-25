@@ -281,9 +281,9 @@
 
     <!-- lineage directory entries -->
 
-  <xsl:template mode="index" match="gmd:LI_Lineage[count(ancestor::node()) =  1]">
+  <xsl:template mode="index" match="gmd:LI_Lineage/comment()">
     <xsl:variable name="title"
-                  select="gmd:statement/(gco:CharacterString|gmx:Anchor)"/>
+                  select="."/>
     <resourceTitleObject type="object">{
     "default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"
     }</resourceTitleObject>
