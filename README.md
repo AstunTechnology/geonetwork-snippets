@@ -16,25 +16,27 @@ Note that you will need access to the files for both your schema and the core Ge
 
 * Must be contained within a single root element (see examples in this repository)
 * Must have all the xml namespaces used within the snippet defined in the root element
+* Use an xml comment inside the root element to add a title to the snippet, which will be used for display and indexing
 
 ### Add to index
 
 Add an element to the `index-fields\index-subtemplate.xsl` for your metadata profile, containing something like the following:
 
-	<xsl:template mode="index" match="gmd:DQ_CompletenessCommission[count(ancestor::node()) =  1]">
-	    <Field name="_title"
-	           string="{gmd:result/*/gmd:explanation/gco:CharacterString}"
-	           store="true" index="true"/>
-
-	    <xsl:call-template name="subtemplate-common-fields"/>
-	</xsl:template>
+	<xsl:template mode="index" match="gmd:DQ_ConceptualConsistency/comment()">
+        <xsl:variable name="title"
+                  select="."/>
+    <resourceTitleObject type="object">{
+      "default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"
+      }</resourceTitleObject>
+           
+        <xsl:call-template name="subtemplate-common-fields"/>
+    </xsl:template>
 
 
 Where:
 
-* The element being matched is the root element of your snippet (in this case `gmd:DQ_CompletenessCommission`)
-* `[count(ancestor::node()) =  1]` is mandatory
-* The string element is an xpath statement to create an entry that will represent the title of the snippet in the index and the display label in the directory
+* The element being matched is the root element of your snippet (in this case `DQ_ConceptualConsistency`)
+* `comment()` is mandatory and should point at the xpath location of your title comment
 
 Then add the same entry above into `index-fields/index-subtemplate.xsl` for the core ISO19139 metadata profile, making the same substitutions as above. This ensures that the entry is present and displays correctly in both your metadata profile editor interface and the main directory management page.
 
