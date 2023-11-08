@@ -2,6 +2,7 @@
 						xmlns:gmx="http://www.isotc211.org/2005/gmx"
 						xmlns:gco="http://www.isotc211.org/2005/gco"
 						xmlns:xlink="http://www.w3.org/1999/xlink">
+<!-- INSPIRE no limitations -->
 <gmd:accessConstraints>
 <gmd:MD_RestrictionCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions"/>
 </gmd:accessConstraints>
