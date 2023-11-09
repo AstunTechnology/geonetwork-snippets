@@ -160,13 +160,16 @@
   </xsl:template>
 
 
-  <xsl:template mode="index" match="gmd:MD_LegalConstraints/comment()">
-    <xsl:variable name="title" select="."/>
+  <!-- Indexing constraints -->
+  <xsl:template mode="index" match="gmd:resourceConstraints[count(ancestor::node()) =  1]">
+    <xsl:variable name="constraint" select="concat(
+                        string-join(gmd:MD_LegalConstraints/*/gmd:MD_RestrictionCode/@codeListValue[. != 'otherConstraints'], ', '),
+                        ' ',
+                        string-join(gmd:MD_LegalConstraints/gmd:otherConstraints/*/text(), ', '))"/>
 
     <resourceTitleObject type="object">{
-      "default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"
-      }
-    </resourceTitleObject>
+      "default": "<xsl:value-of select="gn-fn-index:json-escape($constraint)"/>"
+      }</resourceTitleObject>
 
     <xsl:call-template name="subtemplate-common-fields"/>
   </xsl:template>
@@ -174,9 +177,10 @@
 
   <!-- consistency directory entries -->
 
-  <xsl:template mode="index" match="gmd:DQ_DomainConsistency/comment()">
+  <!-- domain consistency -->
+  <xsl:template mode="index" match="gmd:DQ_DomainConsistency[count(ancestor::node()) = 1]">
     <xsl:variable name="title"
-                  select="."/>
+                  select="gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:otherCitationDetails/(gco:CharacterString|gmx:Anchor)"/>
     <resourceTitleObject type="object">{
       "default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"
       }</resourceTitleObject>
@@ -184,106 +188,119 @@
     <xsl:call-template name="subtemplate-common-fields"/>
   </xsl:template>
 
-        
-    <xsl:template mode="index" match="gmd:DQ_ConceptualConsistency/comment()">
-        <xsl:variable name="title"
-                  select="."/>
-    <resourceTitleObject type="object">{
-      "default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"
-      }</resourceTitleObject>
-           
-        <xsl:call-template name="subtemplate-common-fields"/>
-    </xsl:template>
-
-    <xsl:template mode="index" match="gmd:DQ_FormatConsistency/comment()">
+  <!-- conceptual consistency -->   
+  <xsl:template mode="index" match="gmd:DQ_ConceptualConsistency[count(ancestor::node()) = 1]">
     <xsl:variable name="title"
-                  select="."/>
+                  select="gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:otherCitationDetails/(gco:CharacterString|gmx:Anchor)"/>
     <resourceTitleObject type="object">{
       "default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"
       }</resourceTitleObject>
+          
+    <xsl:call-template name="subtemplate-common-fields"/>
+  </xsl:template>
 
-        <xsl:call-template name="subtemplate-common-fields"/>
-    </xsl:template>
-
-    <xsl:template mode="index" match="gmd:DQ_LogicalConsistency/comment()">
-     <xsl:variable name="title"
-                  select="."/>
-    <resourceTitleObject type="object">{
-      "default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"
-      }</resourceTitleObject>
-           
-        <xsl:call-template name="subtemplate-common-fields"/>
-    </xsl:template>
-
-    <xsl:template mode="index" match="gmd:DQ_TopologicalConsistency/comment()">
-     <xsl:variable name="title"
-                  select="."/>
-    <resourceTitleObject type="object">{
-      "default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"
-      }</resourceTitleObject>
-        <xsl:call-template name="subtemplate-common-fields"/>
-    </xsl:template>
-
-    <!-- accuracy directory entries -->
-
-    <xsl:template mode="index" match="gmd:DQ_PositionalAccuracy/comment()">
+  <!-- format consistency -->
+  <xsl:template mode="index" match="gmd:DQ_FormatConsistency[count(ancestor::node()) = 1]">
     <xsl:variable name="title"
-                  select="."/>
-    <resourceTitleObject type="object">{
-      "default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"
-      }</resourceTitleObject>
-        <xsl:call-template name="subtemplate-common-fields"/>
-    </xsl:template>
-
-    <xsl:template mode="index" match="gmd:DQ_TemporalAccuracy/comment()">
-   <xsl:variable name="title"
-                  select="."/>
+                  select="gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:otherCitationDetails/(gco:CharacterString|gmx:Anchor)"/>
     <resourceTitleObject type="object">{
       "default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"
       }</resourceTitleObject>
 
-        <xsl:call-template name="subtemplate-common-fields"/>
-    </xsl:template>
+    <xsl:call-template name="subtemplate-common-fields"/>
+  </xsl:template>
 
-    <xsl:template mode="index" match="gmd:DQ_ThematicAccuracy/comment()">
+  <!-- logical consistency -->
+  <xsl:template mode="index" match="gmd:DQ_LogicalConsistency[count(ancestor::node()) = 1]">
     <xsl:variable name="title"
-                  select="."/>
+                  select="gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:otherCitationDetails/(gco:CharacterString|gmx:Anchor)"/>
     <resourceTitleObject type="object">{
-      "default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"
-      }</resourceTitleObject>
+    "default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"
+    }</resourceTitleObject>
+          
+    <xsl:call-template name="subtemplate-common-fields"/>
+  </xsl:template>
 
-        <xsl:call-template name="subtemplate-common-fields"/>
-    </xsl:template>
-
-
-    <!-- completeness directory entries -->
-
-    <xsl:template mode="index" match="gmd:DQ_CompletenessCommission/comment()">
+  <!-- topological consistency -->
+  <xsl:template mode="index" match="gmd:DQ_TopologicalConsistency[count(ancestor::node()) = 1]">
     <xsl:variable name="title"
-                  select="."/>
+                  select="gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:otherCitationDetails/(gco:CharacterString|gmx:Anchor)"/>
     <resourceTitleObject type="object">{
-      "default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"
-      }</resourceTitleObject>
-        <xsl:call-template name="subtemplate-common-fields"/>
-    </xsl:template>
+    "default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"
+    }</resourceTitleObject>
 
-    <xsl:template mode="index" match="gmd:DQ_CompletenessOmission/comment()">
-   <xsl:variable name="title"
-                  select="."/>
-    <resourceTitleObject type="object">{
-      "default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"
-      }</resourceTitleObject>
+    <xsl:call-template name="subtemplate-common-fields"/>
+  </xsl:template>
 
-        <xsl:call-template name="subtemplate-common-fields"/>
-    </xsl:template>
+   
+  <!-- accuracy directory entries -->
 
-    <xsl:template name="subtemplate-common-fields"/>
-
-    <!-- lineage directory entries -->
-
-  <xsl:template mode="index" match="gmd:LI_Lineage/comment()">
+  <!-- positional accuracy -->
+  <xsl:template mode="index" match="gmd:DQ_PositionalAccuracy[count(ancestor::node()) = 1]">
     <xsl:variable name="title"
-                  select="."/>
+                select="gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:otherCitationDetails/(gco:CharacterString|gmx:Anchor)"/>
+    <resourceTitleObject type="object">{
+    "default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"
+    }</resourceTitleObject>
+
+    <xsl:call-template name="subtemplate-common-fields"/>
+  </xsl:template>
+
+  <!-- temporal accuracy -->
+  <xsl:template mode="index" match="gmd:DQ_TemporalAccuracy[count(ancestor::node()) = 1]">
+    <xsl:variable name="title"
+                  select="gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:otherCitationDetails/(gco:CharacterString|gmx:Anchor)"/>
+    <resourceTitleObject type="object">{
+    "default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"
+    }</resourceTitleObject>
+
+    <xsl:call-template name="subtemplate-common-fields"/>
+  </xsl:template>
+
+  <!-- thematic accuracy -->
+  <xsl:template mode="index" match="gmd:DQ_ThematicAccuracy[count(ancestor::node()) = 1]">
+    <xsl:variable name="title"
+                  select="gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:otherCitationDetails/(gco:CharacterString|gmx:Anchor)"/>
+    <resourceTitleObject type="object">{
+    "default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"
+    }</resourceTitleObject>
+
+    <xsl:call-template name="subtemplate-common-fields"/>
+  </xsl:template>
+
+
+  <!-- completeness directory entries -->
+
+  <!-- completeness commission -->
+  <xsl:template mode="index" match="gmd:DQ_CompletenessCommission[count(ancestor::node()) = 1]">
+    <xsl:variable name="title"
+                select="gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:otherCitationDetails/(gco:CharacterString|gmx:Anchor)"/>
+    <resourceTitleObject type="object">{
+    "default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"
+    }</resourceTitleObject>
+    
+    <xsl:call-template name="subtemplate-common-fields"/>
+  </xsl:template>
+
+  <!-- completeness ommission -->
+  <xsl:template mode="index" match="gmd:DQ_CompletenessOmission[count(ancestor::node()) = 1]">
+    <xsl:variable name="title"
+                select="gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:otherCitationDetails/(gco:CharacterString|gmx:Anchor)"/>
+    <resourceTitleObject type="object">{
+    "default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"
+    }</resourceTitleObject>
+
+    <xsl:call-template name="subtemplate-common-fields"/>
+  </xsl:template>
+
+  <xsl:template name="subtemplate-common-fields"/>
+
+  
+  <!-- lineage directory entries -->
+
+  <xsl:template mode="index" match="gmd:LI_Lineage[count(ancestor::node()) = 1]">
+    <xsl:variable name="title"
+                  select="gmd:statement/(gco:CharacterString|gmx:Anchor)"/>
     <resourceTitleObject type="object">{
     "default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"
     }</resourceTitleObject>
