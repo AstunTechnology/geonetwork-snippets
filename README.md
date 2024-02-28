@@ -2,7 +2,7 @@
 
 WIP repository of generic snippets for GeoNetwork. It is expected that this will be expanded to include different types of snippet over time.
 
-The following process is an outline for how to define a new snippet, add it to the GeoNetwork index, and allow it to show in the report picker in the editor layout for your schema. 
+The following process is an outline for how to define a new snippet, add it to the GeoNetwork index, and allow it to show in the report picker in the editor layout for your schema.
 
 **Caution, this is a complex process and requires some knowledge of xml and xpath. Take backups of any files you change!**
 
@@ -16,32 +16,30 @@ Note that you will need access to the files for both your schema and the core Ge
 
 * Must be contained within a single root element (see examples in this repository)
 * Must have all the xml namespaces used within the snippet defined in the root element
+* Must have a string element that will represent the title of the snippet in the index and the display label in the directory
 
 ### Add to index
 
 Add an element to the `index-fields\index-subtemplate.xsl` for the core ISO19139 profile, containing something like the following:
 
-	<xsl:template mode="index" match="gmd:DQ_ConceptualConsistency[count(ancestor::node()) =  1]">
+	<xsl:template mode="index" match="gmd:DQ_ConceptualConsistency[count(ancestor::node()) = 1]">
         <xsl:variable name="title"
                   select="gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:otherCitationDetails/(gco:CharacterString|gmx:Anchor)"/>
-    <resourceTitleObject type="object">{
-      "default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"
-      }</resourceTitleObject>
-           
-        <xsl:call-template name="subtemplate-common-fields"/>
+    		<resourceTitleObject type="object">
+    			{"default": "<xsl:value-of select="gn-fn-index:json-escape($title)"/>"}
+    		</resourceTitleObject>
+    		<xsl:call-template name="subtemplate-common-fields"/>
     </xsl:template>
-
 
 Where:
 
 * The element being matched is the root element of your snippet (in this case `DQ_ConceptualConsistency`)
-* `[count(ancestor::node()) =  1]` is mandatory
+* `[count(ancestor::node()) = 1]` is mandatory
 * The string element is an xpath statement to create an entry that will represent the title of the snippet in the index and the display label in the directory
 
 Then ensure that the Gemini 2.3 `index-fields\index-subtemplate.xsl` contains a reference back to ISO19139 (it probably does already):
 
 	<xsl:import href="../../iso19139/index-fields/index-subtemplate.xsl"/>
-
 
 ### Add a translation
 
@@ -102,7 +100,6 @@ If your element **is** explicitly defined then you need to change the definition
 * Paste your xml into the box labeled "XML snippet"
 * Choose a group to assign it to (this is mandatory)
 * Click the "Import directory entry" button
-
 
 ## Common problems
 
