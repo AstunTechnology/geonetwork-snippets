@@ -1,4 +1,4 @@
-# Generic Snippets for GeoNetwork 4.2.x branch
+# Generic Snippets for GeoNetwork 4.4.x branch
 
 WIP repository of generic snippets for GeoNetwork. It is expected that this will be expanded to include different types of snippet over time.
 
